@@ -8,3 +8,6 @@ npx prisma generate
 
 // Prisma Migrate
 npx prisma migrate dev --init
+
+// Prisma Studio
+npx prisma studio

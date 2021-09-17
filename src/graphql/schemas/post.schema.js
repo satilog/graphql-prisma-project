@@ -7,6 +7,7 @@ export default `
 
     type Mutation {
         createPost(data: CreatePostInput): Post!
+        updatePost(data: UpdatePostInput): Post!
     }
 
     type Post {
@@ -19,6 +20,13 @@ export default `
         postedBy: User!
         comments: [Comment!]!
     } 
+
+    input UpdatePostInput {
+        postId: Int!
+        title: String
+        content: String
+        isPublished: Boolean
+    }
 
     input CreatePostInput {
         userId: Int!

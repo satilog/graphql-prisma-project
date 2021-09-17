@@ -25,6 +25,7 @@ model Post {
   postedBy    Int
   title       String    @db.VarChar(400)
   content     String?   @db.LongText
+  category    String
   isPublished Boolean   @default(false)
   postedAt    DateTime? @default(now()) @db.DateTime(0)
   updatedAt   DateTime? @db.DateTime(0)

@@ -74,6 +74,44 @@ export default {
                 throw err;
             }
         },
+        updatePost: async (parent, args, { prisma, req }, info) => {
+            try {
+                
+                console.log("mutation reached")
+                
+                
+                
+                
+                
+                return
+                
+                // const params = args.data;
+
+                // console.log(prisma)
+                // const existingPost = await prisma.post.findUnique({
+                //     where: {
+                //         id: params.postId,
+                //     },
+                // });
+                // if (!existingPost) throw new Error("Post not found!");
+
+                // const updatedPost = await prisma.post.update({
+                //     where: {
+                //         id: params.postId
+                //     },
+                //     data: {
+                //         postedBy: params.userId,
+                //         title: params.title,
+                //         content: params.content,
+                //         isPublished: params.isPublished,
+                //         postedAt: new Date(),
+                //     }
+                // });
+                // return updatedPost;
+            } catch (err) {
+                throw err;
+            }
+        },
     },
     Post: {
         postedBy: async (parent, args, { prisma, req }, info) => {
