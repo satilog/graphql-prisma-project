@@ -1,0 +1,10 @@
+npx prisma init
+
+// Introspection
+npx prisma instrospect
+
+// Prisma Client
+npx prisma generate
+
+// Prisma Migrate
+npx prisma migrate dev --init

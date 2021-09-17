@@ -1,0 +1,64 @@
+{
+  "name": "graphql-prisma-boilerplate",
+  "version": "1.0.0",
+  "description": "Prisma getting started project setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server",
+    "server": "node ./dist-src/app",
+    "transpile": "babel ./src --out-dir dist-src",
+    "clean": "rimraf dist-src",
+    "build": "npm-run-all clean transpile",
+    "dev": "NODE_ENV=development npm-run-all build server",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "watch:dev": "nodemon"
+  },
+  "author": "Sathyajit Loganathan",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@elastic/elasticsearch": "^7.13.0",
+    "@graphql-tools/load-files": "^6.3.2",
+    "@graphql-tools/merge": "^6.2.17",
+    "@prisma/client": "^3.0.2",
+    "apollo-server-express": "^2.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "morgan": "^1.10.0",
+    "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
+    "prisma": "^2.16.1",
+    "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ]
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "src/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/node": "^7.12.13"
+  }
+}

@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  posts Post[]
+}
+
+model Post {
+    id              Int              @id @default(autoincrement())
+    title           String 
+    content         String
+    category        Category
+    createdAt       DateTime?        @default(now())
+    createdBy       Int
+    user            User             @relation(fields: [id], references: [id])
+    isPublished     Boolean
+}
+
+enum Category {
+    EDUCATION
+    NATURE
+    NEWS
+    SPORTS
+}

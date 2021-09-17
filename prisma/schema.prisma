@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  postId      Int?
+  commenterId Int?
+  content     String    @db.MediumText
+  commentedAt DateTime? @default(now()) @db.DateTime(0)
+  User        User?     @relation(fields: [commenterId], references: [id])
+  Post        Post?     @relation(fields: [postId], references: [id])
+
+  @@index([postId], name: "comment_post_fk")
+  @@index([commenterId], name: "comment_user_fk")
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  postedBy    Int
+  title       String    @db.VarChar(400)
+  content     String?   @db.LongText
+  isPublished Boolean   @default(false)
+  postedAt    DateTime? @default(now()) @db.DateTime(0)
+  updatedAt   DateTime? @db.DateTime(0)
+  User        User      @relation(fields: [postedBy], references: [id])
+  Comment     Comment[]
+
+  @@index([postedBy], name: "post_user_fk")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  firstName String    @db.VarChar(400)
+  lastName  String    @db.VarChar(400)
+  email     String    @db.VarChar(400)
+  createdAt DateTime? @default(now()) @db.DateTime(0)
+  updatedAt DateTime? @db.DateTime(0)
+  Comment   Comment[]
+  Post      Post[]
+}

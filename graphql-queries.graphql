@@ -1,0 +1,87 @@
+query {
+  fetchAllUsers{
+    id
+    firstName
+    lastName
+    email
+		createdAt
+    updatedAt
+  }
+}
+
+mutation {
+  createUser(data: {
+    firstName: "Sathyajit"
+    lastName: "Loganathan"
+    email: "loganathansathyajit+test@gmail.com"
+  }) {
+    id
+    firstName
+    lastName
+    email
+    createdAt
+   	updatedAt
+  }
+}
+
+query {
+  fetchOneUser(userId: 1) {
+    id
+    firstName
+    lastName
+    email
+    posts {
+      id
+      title
+      content
+    }
+  }
+}
+
+mutation{
+	createPost(data: {
+  	userId: 3
+    title: "Sports Fiesta"
+    content: "Just another sports event!"
+    isPublished: false
+  }) {
+    id
+    isPublished
+    title
+    content
+    postedAt
+    postedBy {
+      id
+      firstName
+    }
+  } 
+}
+
+query {
+  searchPost(searchQuery: "Just") {
+    id
+    title
+    content
+  }
+}
+
+mutation{
+  createUserAndPost(data: {
+    firstName: "Ryan",
+		lastName: "Reynolds",
+    email: "ryanreynolds@gmail.com"
+    post: {
+      title: "Life as a superhero",
+      content: "A true hero is constantly thinking about how they can take action and help others. You may be inspired to be a hero for a certain cause or issue, or you may try to be a hero for someone in need. For example, if you are passionate about the environment, don't just preach to people that they should recycle."
+    }
+  }) {
+    id
+    firstName
+    lastName
+    email
+    posts {
+      id
+      title
+    }
+  }
+}
